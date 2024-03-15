@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 // Import routes
 const userRoutes = require("./routes/user_routes");
 const superheroRoutes = require("./routes/superhero_routes");
+const adressRoutes = require("./routes/adress_rout");
 
 const app = express();
 require("dotenv").config();
@@ -19,6 +20,7 @@ app.listen(PORT, () => console.log("Server is running in port", PORT));
 // http://localhost:3001/api/v1/superheros//new-superhero
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/superheros", superheroRoutes);
+app.use("/api/v1/adresses", adressRoutes);
 
 
 // Connect to MongoDB
