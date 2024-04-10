@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 // Import routes
 const userRoutes = require("./routes/user_routes");
@@ -10,6 +11,7 @@ const adressRoutes = require("./routes/adress_rout");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

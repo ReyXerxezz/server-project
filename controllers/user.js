@@ -2,13 +2,20 @@ const userModel  = require('../models/user');
 
 const createUser = async (req, res)=>{
     try{
-        const { user_name, lastname, email, password} = req.body;
+        const { user_name, lastname, email, password, active_status, role} = req.body;
         console.log(req.boy);
+
+        const avatar = req.file ? req.file.filename : null;
+        console.log(avatar);
+
         const user = new userModel({
             user_name,
             lastname,
             email,
-            password
+            password,
+            active_status, 
+            role,
+            avatar
         });
         const newUser = await user.save();
         res.status(201).json(newUser);

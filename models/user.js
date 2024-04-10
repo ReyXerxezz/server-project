@@ -18,6 +18,17 @@ const userModel = mongoose.Schema({
         type: String,
         required: true,
     },
+    active_status:{
+        type: Boolean,
+        default: false,
+    },
+    role:{
+        type: String,
+        default: 'user',
+    },
+    avatar:{
+        type: String,
+    },
 })
 
 const User = mongoose.model("UserCollection", userModel);
