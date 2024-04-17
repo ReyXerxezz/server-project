@@ -24,6 +24,25 @@ const createUser = async (req, res)=>{
     }
 };
 
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "Usuario no encontrado" });
+        }
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.status(400).json({ message: "Contraseña incorrecta" });
+        }
+
+        res.status(200).json({ message: "Inicio de sesión exitoso"});
+    } catch (error) {
+        res.status(500).json({ message: "Error al iniciar sesión" });
+    }
+};
+
 const getListUsers = async (req, res) => {
     try {
         console.log("Listar usuarios");
@@ -74,4 +93,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = {createUser, getListUsers, getById, editUser, deleteUser};
+module.exports = {createUser, getListUsers, getById, editUser, deleteUser, login, getRole};
